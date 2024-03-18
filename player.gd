@@ -24,11 +24,11 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_left"):
 		vel.x -= speed
-		$AnimatedSprite.flip_h=false
+	
 		
 	if Input.is_action_pressed("ui_right"):
 		vel.x += speed
-		$AnimatedSprite.flip_h=true
+	
 	
 	vel = move_and_slide(vel, Vector2.UP)
 	
@@ -37,3 +37,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		vel.y -= jumpForce
 
+func attack
+ 
+
+
+func _on_Attack_area_entered(area):
+	pass # Replace with function body.
