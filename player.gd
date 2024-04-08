@@ -1,21 +1,16 @@
 extends KinematicBody2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var score : int = 0
 
 var player_health = 3
 
 #onready var bounce_raycast = $bounce_raycast
-var is_attacking = false
-var can_attack = true
+var is_attacking: bool = false
+var can_attack: bool = true
 var speed : int = 200
 var jump_force : int = 400
 var gravity : int = 800
-var damage = 1
+var damage: int = 1
 var vel : Vector2 = Vector2()
 var grounded : bool = false
 
