@@ -20,6 +20,7 @@ var vel : Vector2 = Vector2()
 var grounded : bool = false
 
 func _ready():
+	
 	$AttackArea/AttackCollisionShape2D.disabled = true
 
 

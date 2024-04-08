@@ -2,22 +2,35 @@ extends Node2D
 
 var enemy_health : int = 1
 export var skydning : bool = false
+onready var timer: Timer = $ShootTimer
+var bullet = preload("res://EnemyBullet.tscn")
 
-export (PackedScene) var Bullet;
 
-func take_damage(damage_in):
-	enemy_health -= damage_in
+
+func _physics_process(delta):
+	pass
+
+func take_damage(sword_in):
+	enemy_health -= sword_in
 	
 	if enemy_health <= 0:
 		print("Avvv! jeg er død")
 		queue_free()
 	pass
 
-
+#func _ready():
+#	shoot()
 
 func shoot():
-	var b = Bullet.instance()
-	add_child(b)
-	b.transform = $Muzzle.transform
+	var direction : float = -1
+	var b = bullet.instance()
+	b.position = position
+	b.position.x+=20*direction
+	b.velocity *= direction
+	get_tree().get_root().add_child(b)
 	
-	#if player 
+
+
+
+func _on_ShootTimer_timeout():
+	shoot()
