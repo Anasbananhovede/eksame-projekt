@@ -1,10 +1,12 @@
 extends KinematicBody2D
 
-var score : int = 0
 
-var player_health = 3
+
+
+
 
 #onready var bounce_raycast = $bounce_raycast
+var player_health: int = 3
 var is_attacking: bool = false
 var can_attack: bool = true
 var speed : int = 200
@@ -12,18 +14,22 @@ var jump_force : int = 400
 var gravity : int = 800
 var damage: int = 1
 var vel : Vector2 = Vector2()
+#var velocity Vector2
 var grounded : bool = false
+var score : int = 0
 
+
+var delta
 func _ready():
-	
+
 	$AttackArea/AttackCollisionShape2D.disabled = true
 
 
 func _physics_process(delta):
 	
-	
 	$AttackArea/AttackCollisionShape2D.disabled = not is_attacking
 	vel.x = 0
+	
 	
 	if Input.is_action_pressed("ui_left"):
 		vel.x -= speed
@@ -45,14 +51,14 @@ func _physics_process(delta):
 		is_attacking = true 
 		can_attack = false
 		
-		
-		$CollisionShape2D/AnimatedSprite.play("attack")
+		$player_body/AnimatedSprite.play("attack")
 		$AttackTimer.start(0.5)
 	if is_attacking:
 		for enemy_body in $AttackArea.get_overlapping_bodies():
 			if enemy_body.has_method("take_damage") && enemy_body != self && is_attacking:
 				enemy_body.take_damage(damage)
 				_on_AttackTimer_timeout()
+
 
 func _on_AttackTimer_timeout():
 	#hvor lang tid indtil næste mulig angreb
@@ -70,10 +76,13 @@ func _on_AttackArea_body_entered(body):
 func take_damage(damage_in):
 	player_health -= damage_in
 	
-	if $CollisionShape2D  and player_health <= 0:
+	if $player_body  and player_health <= 0:
 		print("Avvv! jeg er død")
 		queue_free()
 	pass
+	
+	if position.x + 40  > $"../enemy2".position.x && position.x < $"../enemy2".position.x + 40 && position.y + 40 > $"../enemy2".position.y && position.y< $"../enemy2".position.y + 40:
+		player_health -= damage_in
 
 
 #var mouse_pos : Vector2
@@ -82,5 +91,5 @@ func take_damage(damage_in):
 
 
 func _on_AnimatedSprite_animation_finished():
-	if $CollisionShape2D/AnimatedSprite.animation == "attack":
-		$CollisionShape2D/AnimatedSprite.play("default")
+	if $player_body/AnimatedSprite.animation == "attack":
+		$player_body/AnimatedSprite.play("default")

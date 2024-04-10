@@ -82,10 +82,9 @@ skydning = true
 position = Vector2( 0, -14 )
 scale = Vector2( 0.675, 0.675 )
 frames = SubResource( 46 )
-frame = 9
 playing = true
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+[node name="enemy_body" type="CollisionShape2D" parent="."]
 shape = SubResource( 33 )
 
 [node name="ShootTimer" type="Timer" parent="."]
