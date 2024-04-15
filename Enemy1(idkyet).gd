@@ -1,4 +1,6 @@
-extends Node2D
+extends KinematicBody2D
+class_name Enemy
+
 
 export var mortal = true
 

@@ -26,6 +26,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	var collision = move_and_collide(vel*delta)
 	
 	$AttackArea/AttackCollisionShape2D.disabled = not is_attacking
 	vel.x = 0
@@ -39,6 +40,10 @@ func _physics_process(delta):
 		vel.x += speed
 	
 	
+
+	if collision and collision.collider is Enemy:
+		if collision.collider.skydning == false:
+			take_damage(damage)
 	vel = move_and_slide(vel, Vector2.UP)
 	
 	vel.y += gravity * delta
@@ -93,3 +98,9 @@ func take_damage(damage_in):
 func _on_AnimatedSprite_animation_finished():
 	if $player_body/AnimatedSprite.animation == "attack":
 		$player_body/AnimatedSprite.play("default")
+
+
+func _on_damage_delay_timeout():
+	#if collision.
+		#$damage_delay.start(1.5)
+	pass # Replace with function body.
