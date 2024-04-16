@@ -3,9 +3,6 @@ class_name Player
 
 
 
-
-
-#onready var bounce_raycast = $bounce_raycast
 var player_health: int = 3
 var is_attacking: bool = false
 var can_attack: bool = true
@@ -40,10 +37,11 @@ func _physics_process(delta):
 		vel.x += speed
 	
 	
-
+# gøre at vi kan tage collision skade af enemy, som ikke kan skyde
 	if collision and collision.collider is Enemy:
 		if collision.collider.skydning == false:
 			take_damage(damage)
+			
 	vel = move_and_slide(vel, Vector2.UP)
 	
 	vel.y += gravity * delta
@@ -55,7 +53,7 @@ func _physics_process(delta):
 		#hvor lang tid jeg angriber
 		is_attacking = true 
 		can_attack = false
-		
+		#hvor lang tid angreb funegre
 		$player_body/AnimatedSprite.play("attack")
 		$AttackTimer.start(0.5)
 	if is_attacking:
@@ -64,7 +62,7 @@ func _physics_process(delta):
 				enemy_body.take_damage(damage)
 				_on_AttackTimer_timeout()
 
-
+#hvor lang tid det tager før jeg kan angrebe igen
 func _on_AttackTimer_timeout():
 	#hvor lang tid indtil næste mulig angreb
 	if is_attacking: 
@@ -77,7 +75,7 @@ func _on_AttackArea_body_entered(body):
 	print(body.name, is_attacking);
 	pass # Replace with function body.
 
-
+#gøre at player kan tage sakde, og dø
 func take_damage(damage_in):
 	player_health -= damage_in
 	
@@ -88,11 +86,6 @@ func take_damage(damage_in):
 	
 	if position.x + 40  > $"../enemy2".position.x && position.x < $"../enemy2".position.x + 40 && position.y + 40 > $"../enemy2".position.y && position.y< $"../enemy2".position.y + 40:
 		player_health -= damage_in
-
-
-#var mouse_pos : Vector2
-#get_viewport().warp_mouse(mouse_pos)
-#mouse_pos.x+=delta*20
 
 
 func _on_AnimatedSprite_animation_finished():
@@ -106,9 +99,15 @@ func _on_damage_delay_timeout():
 	pass # Replace with function body.
 	
 	
-	
+	#gøre at vi tilføjer vaule til score
 func collect_coins(value):
 	score += value
+	
+	
+#func game_restart():
+#	if player_health <= 0 and input.is_action_pressed('r'):
+	
+	
 	
 	
 	
