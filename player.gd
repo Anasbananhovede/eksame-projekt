@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name Player
 
 
 
@@ -14,9 +14,9 @@ var jump_force : int = 400
 var gravity : int = 800
 var damage: int = 1
 var vel : Vector2 = Vector2()
-#var velocity Vector2
 var grounded : bool = false
 var score : int = 0
+var value: int = 10
 
 
 var delta
@@ -104,3 +104,11 @@ func _on_damage_delay_timeout():
 	#if collision.
 		#$damage_delay.start(1.5)
 	pass # Replace with function body.
+	
+	
+	
+func collect_coins(value):
+	score += value
+	
+	
+	
