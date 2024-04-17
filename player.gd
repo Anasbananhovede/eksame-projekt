@@ -7,7 +7,7 @@ var player_health: int = 3
 var is_attacking: bool = false
 var can_attack: bool = true
 var speed : int = 200
-var jump_force : int = 400
+var jump_force : int = 300
 var gravity : int = 800
 var damage: int = 1
 var vel : Vector2 = Vector2()
@@ -16,13 +16,15 @@ var score : int = 0
 var value: int = 10
 
 
-var delta
 func _ready():
-
 	$AttackArea/AttackCollisionShape2D.disabled = true
 
 
 func _physics_process(delta):
+
+	
+	
+	
 	var collision = move_and_collide(vel*delta)
 	
 	$AttackArea/AttackCollisionShape2D.disabled = not is_attacking
@@ -31,10 +33,14 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("ui_left"):
 		vel.x -= speed
+		$player_body/AnimatedSprite.flip_h=true
+		$AttackArea.scale.x = -1
 	
 		
 	if Input.is_action_pressed("ui_right"):
 		vel.x += speed
+		$player_body/AnimatedSprite.flip_h=false
+		$AttackArea.scale.x = 1
 	
 	
 # gøre at vi kan tage collision skade af enemy, som ikke kan skyde
@@ -54,8 +60,15 @@ func _physics_process(delta):
 		is_attacking = true 
 		can_attack = false
 		#hvor lang tid angreb funegre
-		$player_body/AnimatedSprite.play("attack")
+		$player_body/AnimatedSprite.play("Attack")
 		$AttackTimer.start(0.5)
+	if $player_body/AnimatedSprite.animation != "Attack":
+		if abs(vel.x)>1:
+			$player_body/AnimatedSprite.play("sprint")
+		else:
+			$player_body/AnimatedSprite.play("idle")
+	
+	
 	if is_attacking:
 		for enemy_body in $AttackArea.get_overlapping_bodies():
 			if enemy_body.has_method("take_damage") && enemy_body != self && is_attacking:
@@ -80,8 +93,9 @@ func take_damage(damage_in):
 	player_health -= damage_in
 	
 	if $player_body  and player_health <= 0:
-		print("Avvv! jeg er død")
 		queue_free()
+		get_tree().paused = true
+	
 	pass
 	
 	if position.x + 40  > $"../enemy2".position.x && position.x < $"../enemy2".position.x + 40 && position.y + 40 > $"../enemy2".position.y && position.y< $"../enemy2".position.y + 40:
@@ -89,8 +103,8 @@ func take_damage(damage_in):
 
 
 func _on_AnimatedSprite_animation_finished():
-	if $player_body/AnimatedSprite.animation == "attack":
-		$player_body/AnimatedSprite.play("default")
+	if $player_body/AnimatedSprite.animation == "Attack":
+		$player_body/AnimatedSprite.play("idle")
 
 
 func _on_damage_delay_timeout():
@@ -104,9 +118,7 @@ func collect_coins(value):
 	score += value
 	
 	
-#func game_restart():
-#	if player_health <= 0 and input.is_action_pressed('r'):
-	
+
 	
 	
 	

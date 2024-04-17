@@ -2,16 +2,23 @@ extends KinematicBody2D
 class_name Enemy
 
 
-export var mortal = true
+export var mortal: bool = true
 
 var enemy_health : int = 1
 export var skydning : bool = false
 onready var timer: Timer = $ShootTimer
 var bullet = preload("res://EnemyBullet.tscn")
 
-
+func _ready():
+	if mortal:
+		$AnimatedSprite.play("jager")
+	else:
+		$AnimatedSprite.play("Barrel")
+		$AnimatedSprite.scale.x = 0.5
+		$AnimatedSprite.scale.y = 0.5
 
 func _physics_process(delta):
+
 	pass
 
 
@@ -23,8 +30,7 @@ func take_damage(sword_in):
 		queue_free()
 	pass
 
-#func _ready():
-#	shoot()
+
 
 func shoot():
 	if not skydning : return 
@@ -34,7 +40,7 @@ func shoot():
 	b.position.x+=20*direction
 	b.velocity *= direction
 	get_tree().get_root().add_child(b)
-	
+
 
 
 

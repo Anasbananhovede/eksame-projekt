@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_Roll.png-59f95c7b0658aa4dc28ecd7dab194caa.stex"
+path="res://.import/Parrot_Attacking.png-171f92b999d484f47c39eec358cbf6be.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_Roll.png"
-dest_files=[ "res://.import/_Roll.png-59f95c7b0658aa4dc28ecd7dab194caa.stex" ]
+source_file="res://Parrot_Attacking.png"
+dest_files=[ "res://.import/Parrot_Attacking.png-171f92b999d484f47c39eec358cbf6be.stex" ]
 
 [params]
 
