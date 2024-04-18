@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Parrot_Running.png" type="Texture" id=1]
 [ext_resource path="res://Parrot_Attacking.png" type="Texture" id=2]
 [ext_resource path="res://player.gd" type="Script" id=3]
 [ext_resource path="res://Parrot_Idle.png" type="Texture" id=4]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 14.0
@@ -125,9 +126,16 @@ shape = SubResource( 28 )
 
 [node name="AttackTimer" type="Timer" parent="."]
 
-[node name="damage_delay" type="Timer" parent="."]
+[node name="UI" parent="." instance=ExtResource( 5 )]
+margin_left = -267.0
+margin_top = -176.0
+margin_right = -179.0
+margin_bottom = -129.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
 
 [connection signal="animation_finished" from="player_body/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
-[connection signal="timeout" from="damage_delay" to="." method="_on_damage_delay_timeout"]

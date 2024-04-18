@@ -1,4 +1,8 @@
-	extends Control
+extends Control
+#hej2
+
+func restart():
+	get_tree().change_scene("res://main.tscn")
 
 
 var http_request : HTTPRequest = HTTPRequest.new()
@@ -6,7 +10,7 @@ const SERVER_URL = "http://localhost/SPILLET/db_test.php"
 const SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded", "Cache-Control: max-age=0"]
 var request_queue : Array = []
 var is_requesting : bool = false
-
+var lastCaller = ""
 
 
 
@@ -14,6 +18,8 @@ func _ready():
 	randomize()
 	add_child(http_request)
 	http_request.connect("request_completed",self,"_http_request_completed")
+	if get_tree().current_scene.name == "GameOver":
+		_get_score("gameover")
 	
 	
 
@@ -47,7 +53,11 @@ func _http_request_completed(_result, _response_code, _headers, _body):
 	else:
 		printerr("All is well")
 		
-	$TextEdit.set_text(response_body)
+	if lastCaller == "gameover":
+		$ScoreDisplay.set_text("test")
+		
+		
+	#$TextEdit.set_text(response_body)
 
 	
 	
@@ -73,8 +83,16 @@ func _submit_score():
 	request_queue.push_back({"command" : command, "data" : data})
 	
 func _get_scores():
+	lastCaller = "getscores"
 	var command = "get_scores"
 	var data = {"score_ofset" : 0, "score_number" : 10}
+	request_queue.push_back({"command" : command, "data" : data})
+	
+func _get_score(caller):
+	lastCaller = caller
+	var command = "get_score"
+	var username = "test"
+	var data = {"username" : username}
 	request_queue.push_back({"command" : command, "data" : data})
 
 

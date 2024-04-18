@@ -14,4 +14,4 @@ func _process(delta):
 	position.x -= (position.x-player.position.x)
 	position.y -= (position.y-player.position.y)
 	
-	pass
+	#pass

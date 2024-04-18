@@ -91,10 +91,12 @@ func _on_AttackArea_body_entered(body):
 #gøre at player kan tage sakde, og dø
 func take_damage(damage_in):
 	player_health -= damage_in
-	
+	$UI.heart_display(player_health)
 	if $player_body  and player_health <= 0:
+		
 		queue_free()
-		get_tree().paused = true
+		get_tree().change_scene("res://GameOver.tscn")
+	
 	
 	pass
 	
@@ -107,19 +109,20 @@ func _on_AnimatedSprite_animation_finished():
 		$player_body/AnimatedSprite.play("idle")
 
 
-func _on_damage_delay_timeout():
-	#if collision.
-		#$damage_delay.start(1.5)
-	pass # Replace with function body.
-	
 	
 	#gøre at vi tilføjer vaule til score
 func collect_coins(value):
 	score += value
-	
-	
 
-	
+
+
+
+#skifter scene til you win
+func  _on_youwinCOLLISION_body_entered(body):
+	if body.name=="player":
+		get_tree().change_scene("res://YouWin.tscn")
+	pass # Replace with function body.
+	pass # Replace with function body.
 	
 	
 	
