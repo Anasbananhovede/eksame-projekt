@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GameOver.gd" type="Script" id=1]
 [ext_resource path="res://Grim_GameOver_V.2.png" type="Texture" id=2]
 [ext_resource path="res://Link_holder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://NetworkRIGTIG.gd" type="Script" id=4]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,4 +38,25 @@ margin_top = 208.0
 margin_right = 288.0
 margin_bottom = 270.0
 
+[node name="NETWORK" type="Control" parent="."]
+margin_left = -60.0
+margin_top = -66.0
+margin_right = -20.0
+margin_bottom = -26.0
+script = ExtResource( 4 )
+
+[node name="PlayerName" type="LineEdit" parent="."]
+margin_left = 195.0
+margin_top = 193.0
+margin_right = 253.0
+margin_bottom = 217.0
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 283.0
+margin_top = 194.0
+margin_right = 340.0
+margin_bottom = 214.0
+text = "Submit score"
+
 [connection signal="pressed" from="Button" to="." method="restart"]
+[connection signal="pressed" from="Button2" to="NETWORK" method="_submit_score"]

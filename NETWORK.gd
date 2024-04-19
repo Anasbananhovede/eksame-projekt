@@ -6,7 +6,7 @@ func restart():
 
 
 var http_request : HTTPRequest = HTTPRequest.new()
-const SERVER_URL = "http://localhost/SPILLET/db_test.php"
+const SERVER_URL = "http://monkeypaw17.dk/db_test.php"
 const SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded", "Cache-Control: max-age=0"]
 var request_queue : Array = []
 var is_requesting : bool = false
@@ -45,7 +45,7 @@ func _http_request_completed(_result, _response_code, _headers, _body):
 		return
 	
 	var response_body = _body.get_string_from_utf8()
-	
+	print(response_body)
 	var response = parse_json(response_body)
 	if response['error'] != "none":
 		printerr("We returned error: " + response['error'])
@@ -76,10 +76,9 @@ func _send_request(request: Dictionary):
 	
 	
 func _submit_score():
-	var user_name = $PlayerName.get_text()
-	var score = $Score.get_text()
+	var user_name = $PlayerName.text()
 	var command = "add_score"
-	var data = {"username" : user_name, "score" : score}
+	var data = {"username" : user_name, "score" : Global.score}
 	request_queue.push_back({"command" : command, "data" : data})
 	
 func _get_scores():

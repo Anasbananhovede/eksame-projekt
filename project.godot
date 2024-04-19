@@ -30,6 +30,10 @@ config/name="3.g - eksameProjekt"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

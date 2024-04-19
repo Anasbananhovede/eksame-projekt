@@ -5,7 +5,7 @@
 [ext_resource path="res://player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enemy1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=5]
-[ext_resource path="res://NETWORK.gd" type="Script" id=6]
+[ext_resource path="res://NetworkRIGTIG.gd" type="Script" id=6]
 [ext_resource path="res://youwinCOLLISION.gd" type="Script" id=7]
 [ext_resource path="res://Background.png" type="Texture" id=8]
 [ext_resource path="res://background.gd" type="Script" id=9]
@@ -106,9 +106,6 @@ tile_data = PoolIntArray( 196610, 1, 0, 196611, 1, 0, 196617, 1, 0, 196618, 1, 0
 
 [node name="entities" type="Node2D" parent="."]
 
-[node name="player" parent="entities" instance=ExtResource( 3 )]
-position = Vector2( 185, -6 )
-
 [node name="enemy1" parent="entities" instance=ExtResource( 4 )]
 position = Vector2( 192, 93 )
 
@@ -131,6 +128,9 @@ skydning = false
 position = Vector2( 789, 59 )
 mortal = false
 skydning = false
+
+[node name="player" parent="entities" instance=ExtResource( 3 )]
+position = Vector2( 185, -6 )
 
 [node name="Coin" parent="." instance=ExtResource( 5 )]
 position = Vector2( 284, -18 )

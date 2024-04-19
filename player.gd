@@ -12,11 +12,11 @@ var gravity : int = 800
 var damage: int = 1
 var vel : Vector2 = Vector2()
 var grounded : bool = false
-var score : int = 0
 var value: int = 10
 
 
 func _ready():
+	Global.score =  0
 	$AttackArea/AttackCollisionShape2D.disabled = true
 
 
@@ -93,7 +93,7 @@ func take_damage(damage_in):
 	player_health -= damage_in
 	$UI.heart_display(player_health)
 	if $player_body  and player_health <= 0:
-		
+		#gemme globale variabler
 		queue_free()
 		get_tree().change_scene("res://GameOver.tscn")
 	
@@ -112,7 +112,7 @@ func _on_AnimatedSprite_animation_finished():
 	
 	#gøre at vi tilføjer vaule til score
 func collect_coins(value):
-	score += value
+	Global.score += value
 
 
 
