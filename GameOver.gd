@@ -9,7 +9,7 @@ func restart():
 
 
 
-
+#ALT KODEN ER FÆRDIG
 
 
 
