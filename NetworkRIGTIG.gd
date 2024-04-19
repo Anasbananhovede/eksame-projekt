@@ -82,6 +82,7 @@ func _http_request_completed(_result, _response_code, _headers, _body):
 	
 	var response_body = _body.get_string_from_utf8()
 	#$TextEdit.set_text(response_body)
+	print(response_body)
 	var response = parse_json(response_body)
 
 	if response['error'] != "none":
@@ -113,7 +114,6 @@ func _http_request_completed(_result, _response_code, _headers, _body):
 
 	
 func _submit_score():
-	lastCaller = "submitscore"
 	var user_name = $"../PlayerName".text
 	var command = "add_score"
 	var data = {"username" : user_name, "score" : Global.score}
