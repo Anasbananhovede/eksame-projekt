@@ -10,6 +10,6 @@ margin_right = 40.0
 margin_bottom = 14.0
 focus_mode = 2
 action_mode = 0
-text = "link"
+text = "støt truede dyr arter"
 
 [connection signal="pressed" from="LinkButton" to="." method="_on_LinkButton_pressed"]
