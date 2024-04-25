@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Link_holder.gd" type="Script" id=1]
+
+[node name="Link_holder" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="LinkButton" type="LinkButton" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+focus_mode = 2
+action_mode = 0
+text = "støt truede dyr arter"
+
+[connection signal="pressed" from="LinkButton" to="." method="_on_LinkButton_pressed"]
