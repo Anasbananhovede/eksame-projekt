@@ -22,8 +22,8 @@ func _physics_process(delta):
 	pass
 
 
-func take_damage(sword_in):
-	enemy_health -= sword_in
+func take_damage(beak_in):
+	enemy_health -= beak_in
 	
 	if mortal and enemy_health <= 0:
 		print("Avvv! jeg er død")

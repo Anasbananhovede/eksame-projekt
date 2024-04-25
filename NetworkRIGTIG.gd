@@ -48,7 +48,7 @@ func request_nonce():
 		
 	print("Requeste nonce")
 	
-		
+
 func _send_request(request: Dictionary):
 	var client = HTTPClient.new()
 	var data = client.query_string_from_dict({"data" : JSON.print(request['data'])})
@@ -110,8 +110,6 @@ func _http_request_completed(_result, _response_code, _headers, _body):
 			#$TextEdit.set_text($TextEdit.get_text() + String(response['response'][String(1)]['player_name']) + "\t\t" + String(response['response'][String(n)]['score']) + "\n")
 			pass
 	
-	
-
 	
 func _submit_score():
 	var user_name = $"../PlayerName".text

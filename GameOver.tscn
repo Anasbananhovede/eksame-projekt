@@ -25,7 +25,7 @@ rect_scale = Vector2( 0.561887, 0.579207 )
 text = "Restart"
 
 [node name="Link_holder" parent="." instance=ExtResource( 3 )]
-position = Vector2( 105, 139 )
+position = Vector2( 16, 133 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 239, 108 )
@@ -33,10 +33,10 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 
 [node name="ScoreDisplay" type="Label" parent="."]
-margin_left = 176.0
-margin_top = 208.0
-margin_right = 288.0
-margin_bottom = 270.0
+margin_left = 16.0
+margin_top = 193.0
+margin_right = 159.0
+margin_bottom = 258.0
 
 [node name="NETWORK" type="Control" parent="."]
 margin_left = -60.0

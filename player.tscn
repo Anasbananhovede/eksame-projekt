@@ -128,9 +128,9 @@ shape = SubResource( 28 )
 
 [node name="UI" parent="." instance=ExtResource( 5 )]
 margin_left = -267.0
-margin_top = -176.0
-margin_right = -179.0
-margin_bottom = -129.0
+margin_top = -169.0
+margin_right = -164.0
+margin_bottom = -120.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

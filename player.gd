@@ -23,8 +23,6 @@ func _ready():
 func _physics_process(delta):
 
 	
-	
-	
 	var collision = move_and_collide(vel*delta)
 	
 	$AttackArea/AttackCollisionShape2D.disabled = not is_attacking
@@ -113,9 +111,6 @@ func _on_AnimatedSprite_animation_finished():
 	#gøre at vi tilføjer vaule til score
 func collect_coins(value):
 	Global.score += value
-
-
-
 
 #skifter scene til you win
 func  _on_youwinCOLLISION_body_entered(body):
